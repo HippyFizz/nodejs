@@ -11,13 +11,18 @@ router.get('/', function(req, res) {
 });
 
 router.get('/login', passport.authenticate('local-login', {
-    successRedirect : '/api/success',
+    successRedirect : '/users',
     failureRedirect : '/api/fail'
 }));
 
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
+});
+
+router.get('/info', function(req, res) {
+    console.log(req.session);
+    res.end();
 });
 
 router.get('/success', function(req, res) {
