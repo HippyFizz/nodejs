@@ -13,17 +13,13 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-router.get('/test', function(req, res) {
-    console.log(req.isAuthenticated());
-    res.end('login done');
-});
-
 router.get('/done', function(req, res) {
     console.log(req.isAuthenticated());
     res.end('login done');
 });
 
 router.get('/fail', function(req, res) {
+    console.log(req.isAuthenticated());
     res.end('login fail');
 });
 
