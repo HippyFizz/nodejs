@@ -4,12 +4,11 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     passport = require('passport'),
-    session = require('express-session'),
-    flash = require('connect-flash');
+    session = require('express-session');
 
 var index = require('./routes/index'),
     users = require('./routes/users'),
-    data = require('./routes/data');
+    api = require('./routes/api');
 
 var app = express();
 
@@ -33,7 +32,7 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/data', data);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
