@@ -15,7 +15,12 @@ passport.use('local-login', new LocalStrategy({
             if (user){
                 var hash = crypto.createHash('md5').update(password).digest('hex');
                 if (hash == user.password){
-                    return done(null, user);
+                    return done(null, {
+                        id: user.id,
+                        username: user.username,
+                        login: user.login,
+                        permission: user.permission
+                    });
                 } else {
                     return done(null, false);
                 }

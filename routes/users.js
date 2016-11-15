@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
     if (req.isAuthenticated()){
         var session = req.session;
+        console.log(req.session);
         if (session.views) {
             session.views++;
             res.setHeader('Content-Type', 'text/html');
