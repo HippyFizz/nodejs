@@ -1,5 +1,5 @@
-var mysql = require('mysql');
-var crypto = require('crypto');
+var mysql = require('mysql'),
+    crypto = require('crypto');
 
 var connection = mysql.createConnection({
     host: 'localhost',
