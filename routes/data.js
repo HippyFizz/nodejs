@@ -8,14 +8,6 @@ router.get('/', passport.authenticate('local-login', {
     failureRedirect : '/data/fail'
 }));
 
-/*
- passport.authenticate('local-login', {
- successRedirect : '/data/done',
- failureRedirect : '/false',
- failureFlash : true
- })
-*/
-
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
