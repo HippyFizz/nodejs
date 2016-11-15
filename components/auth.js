@@ -1,5 +1,8 @@
 var passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+    LocalStrategy = require('passport-local').Strategy,
+    crypto = require('crypto'),
+    Database = require('./database.js'),
+    db = new Database();
 
 passport.use('local-login', new LocalStrategy({
         usernameField : 'login',
@@ -7,14 +10,17 @@ passport.use('local-login', new LocalStrategy({
         passReqToCallback : true
     },
     function(req, login, password, done) {
-        if (login == 'admin' && password == '123456'){
-            return done(null, JSON.stringify({
-                login: login,
-                password: password
-            }))
-        } else {
-            return done(null, false);
-        }
+        db.connect();
+        db.getUser(login, function (user) {
+            if (user){
+                var hash = crypto.createHash('md5').update(password).digest('hex');
+                if (hash == user.password){
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
+            }
+        });
     }
     )
 );
