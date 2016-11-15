@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('./auth.js');
+var passport = require('./../components/auth.js');
 
 router.get('/', function(req, res) {
     if (req.isAuthenticated()){
@@ -46,10 +46,7 @@ router.get('/fail', function(req, res) {
             code: 400
         }));
     } else {
-        res.end(JSON.stringify({
-            message: 'access denied',
-            code: 401
-        }));
+        res.redirect('/api/success');
     }
 });
 
