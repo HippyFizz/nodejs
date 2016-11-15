@@ -46,7 +46,6 @@ Database.prototype.createUser = function (login, password, permission, username)
 
 Database.prototype.getUser = function (login, callback) {
     var sql = 'SELECT * FROM user WHERE login=\'' + login + '\'';
-    console.log(sql);
     connection.query(sql, function (err, rows) {
         if (err) throw err;
         if (rows.length != 0) {
